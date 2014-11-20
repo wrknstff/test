@@ -1,0 +1,24 @@
+body {
+	background-color: yellow;
+
+}
+
+input {
+	color: pink;
+	background-color: grey;
+}
+
+#clickMe {
+	color: white;
+}
+
+#myTextBox {
+	background-color: white;
+}
+
+#firstNum {
+	background-color: white;
+	border: 10px solid black;
+	color: black;
+}
+
