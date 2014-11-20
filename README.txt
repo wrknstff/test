@@ -29,7 +29,10 @@ watchlist1.php
 	Uses PHP only and must be refreshed for current prices and totals.
 
 watchlist2.php
-	Uses PHP to generate initial the HTML page with current values from Yahoo Finance.  Uses watchlist2.js to update price and totals without a page refresh.  Uses JSON call for price updates.
+	Uses PHP to generate initial the HTML page with current values from Yahoo Finance.  Uses watchlist2.js 
+	to update price and totals without a page refresh.  Uses JSON call for price updates.
 
 watchlist3.html
-	Uses the JQuery Ajax method to read the file, and a JSON call to fetch the data objects from Google.  Table values are updated with current prices and totals without a refresh.  All HTML is created and modified by directly accessing the Document Object Model (DOM) using JavaScript and JQuery.
+	Uses the JQuery Ajax method to read the file, and a JSON call to fetch the data objects from Google.  
+	Table values are updated with current prices and totals without a refresh.  All HTML is created and 
+	modified by directly accessing the Document Object Model (DOM) using JavaScript and JQuery.
