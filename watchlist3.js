@@ -84,7 +84,9 @@ $(function() {
         });
         Stock.change = Stock.price - Stock.prevClose;
         Stock.dailyGL = Stock.qty * Stock.change;
+        Stock.dailyGLPct = (Stock.change / Stock.prevClose) * 100;
         Stock.totalGL = (Stock.price - Stock.cost) * Stock.qty;
+        Stock.totalGLPct = (Stock.totalGL / (Stock.cost * Stock.qty)) * 100;
         Stock.mktValue = (Stock.qty * Stock.price);
         stockObject[count] = Stock;
         totalAcctDailyGL += Stock.dailyGL;
@@ -176,7 +178,7 @@ $(function() {
       }
       $("#" + stockObject[i].symbol + "change").addClass("currency");  
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].dailyGL.toFixed(2)));
+      var text = document.createTextNode(formatCurrency(stockObject[i].dailyGL.toFixed(2)) + " (" + stockObject[i].dailyGLPct.toFixed(2) + "%)");
       var cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "dailyGL");
       var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
@@ -187,7 +189,7 @@ $(function() {
       }
       $("#" + stockObject[i].symbol + "dailyGL").addClass("currency");  
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].totalGL.toFixed(2)));
+      var text = document.createTextNode(formatCurrency(stockObject[i].totalGL.toFixed(2)) + " (" + stockObject[i].totalGLPct.toFixed(2) + "%)");
       var cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "totalGL");
       var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text); 
@@ -212,13 +214,15 @@ $(function() {
     cell.setAttribute("colspan",6);
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
 
-    var text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2)));
+    var text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2))
+      + " (" + ((totalAcctDailyGL / (totalAcctMktValue - totalAcctDailyGL)) * 100).toFixed(2) + "%)");
     var cell = document.createElement("th");
     cell.setAttribute("id","totalAcctDailyGL");
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
     $("#totalAcctDailyGL").addClass("currency");  
 
-    var text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2)));
+    var text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2))
+      + " (" + ((totalAcctGL / (totalAcctMktValue - totalAcctGL)) * 100).toFixed(2) + "%)");
     var cell = document.createElement("th");
     cell.setAttribute("id","totalAcctGL");
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
@@ -255,7 +259,9 @@ $(function() {
         });
         stockObject[randomStock].change = stockObject[randomStock].price - stockObject[randomStock].prevClose;
         stockObject[randomStock].dailyGL = stockObject[randomStock].qty * stockObject[randomStock].change;
+        stockObject[randomStock].dailyGLPct = (stockObject[randomStock].change / stockObject[randomStock].prevClose) * 100;
         stockObject[randomStock].totalGL = (stockObject[randomStock].price - stockObject[randomStock].cost) * stockObject[randomStock].qty;
+        stockObject[randomStock].totalGLPct = (stockObject[randomStock].totalGL / (stockObject[randomStock].cost * stockObject[randomStock].qty)) * 100;
         stockObject[randomStock].mktValue = (stockObject[randomStock].qty * stockObject[randomStock].price);
         totalAcctDailyGL += stockObject[count].dailyGL;
         totalAcctGL += stockObject[count].totalGL;
@@ -296,8 +302,8 @@ $(function() {
         $("#" + stockObject[randomStock].symbol + "change").css("color","red");
       }
 
-      var test = formatCurrency(stockObject[randomStock].dailyGL.toFixed(2));
-      var text = document.createTextNode(formatCurrency(stockObject[randomStock].dailyGL.toFixed(2)));
+      var text = document.createTextNode(formatCurrency(stockObject[randomStock].dailyGL.toFixed(2)) 
+        + " (" + stockObject[randomStock].dailyGLPct.toFixed(2) + "%)");
       var check = document.getElementById(stockObject[randomStock].symbol + "dailyGL");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
@@ -307,7 +313,8 @@ $(function() {
         $("#" + stockObject[randomStock].symbol + "dailyGL").css("color","red");
       }      
 
-      var text = document.createTextNode(formatCurrency(stockObject[randomStock].totalGL.toFixed(2)));
+      var text = document.createTextNode(formatCurrency(stockObject[randomStock].totalGL.toFixed(2))
+        + " (" + stockObject[randomStock].totalGLPct.toFixed(2) + "%)");
       var check = document.getElementById(stockObject[randomStock].symbol + "totalGL");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
@@ -322,12 +329,14 @@ $(function() {
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
     
-			var text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2)));  
+			var text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2))
+        + " (" + ((totalAcctDailyGL / (totalAcctMktValue - totalAcctDailyGL)) * 100).toFixed(2) + "%)");
 			var check = document.getElementById("totalAcctDailyGL");
 			check.removeChild(check.childNodes[0]);
 			check.appendChild(text);
 
-			var text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2)));
+			var text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2))
+        + " (" + ((totalAcctGL / (totalAcctMktValue - totalAcctGL)) * 100).toFixed(2) + "%)");
 			var check = document.getElementById("totalAcctGL");
 			check.removeChild(check.childNodes[0]);
 			check.appendChild(text);
