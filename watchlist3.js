@@ -178,7 +178,8 @@ $(function() {
       }
       $("#" + stockObject[i].symbol + "change").addClass("currency");  
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].dailyGL.toFixed(2)) + " (" + stockObject[i].dailyGLPct.toFixed(2) + "%)");
+      var text = document.createTextNode(formatCurrency(stockObject[i].dailyGL.toFixed(2)) 
+        + " (" + stockObject[i].dailyGLPct.toFixed(2) + "%)");
       var cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "dailyGL");
       var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
@@ -318,9 +319,9 @@ $(function() {
       var check = document.getElementById(stockObject[randomStock].symbol + "totalGL");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
-      if(stockObject[randomStock].change > 0) {
+      if(stockObject[randomStock].totalGL > 0) {
         $("#" + stockObject[randomStock].symbol + "totalGL").css("color","green");
-      } else if(stockObject[randomStock].change < 0) {
+      } else if(stockObject[randomStock].totalGL < 0) {
         $("#" + stockObject[randomStock].symbol + "totalGL").css("color","red");
       }            
 
