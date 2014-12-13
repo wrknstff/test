@@ -52,6 +52,7 @@ unset($info['Symbol']);
 unset($info['Total Securities']);
 unset($info['Total Account Value']);
 unset($info['Money']);
+unset($info[""]);
 echo "<table cellspacing=10>";
 echo "<tr id='header'>";
 echo "<th>Symbol</th>";

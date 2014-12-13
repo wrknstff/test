@@ -25,7 +25,7 @@ while (($data = fgetcsv($file, 8000, ",")) !== FALSE) {
     $yahooReturn = file_get_contents("http://download.finance.yahoo.com/d/quotes.csv?s=$symbol&f=l1p");
     $yahooReturn = explode(',', $yahooReturn);
     $info[$symbol]['price'] = $yahooReturn[0];
-    $info[$symbol]['prevClose'] = $yahooReturn[1];
+    $info[$symbol]['prevClose'] = trim($yahooReturn[1]);
     $info[$symbol]['totalCost'] = str_replace("$", "", $info[$symbol]['totalCost']);
     $info[$symbol]['totalCost'] = str_replace(",", "", $info[$symbol]['totalCost']);
     $info[$symbol]['dailyChange'] = $info[$symbol]['price'] - $info[$symbol]['prevClose'];
@@ -48,6 +48,7 @@ unset($info['Symbol']);
 unset($info['Total Securities']);
 unset($info['Total Account Value']);
 unset($info['Money']);
+unset($info[""]);
 echo "<table cellspacing=10>";
 echo "<tr>";
 echo "<th>Symbol</th>";
@@ -60,7 +61,13 @@ echo "<th>Daily G/L (%)</th>";
 echo "<th>Total G/L (%)</th>";
 echo "<th>Mkt Value</th>";
 echo "</tr>";
+$count = 0;
+    // debug_to_console( $info);
+
 foreach($info as $symbol){
+    // debug_to_console( $symbol['symbol']);
+    $count++;
+
     if($symbol['dailyChange'] > 0){
         $dailyFontColor = "green";
     } else {
@@ -71,21 +78,21 @@ foreach($info as $symbol){
     } else {
         $totalFontColor = "red";
     }
-    echo "<tr id=" . $symbol['symbol'] . ">";
-    echo "<td><a href=http://finance.yahoo.com/q?s=".$symbol['symbol'].">".$symbol['symbol']."</a></td>";
+    echo "<tr id='" . $symbol['symbol'] . "'>";
+    echo "<td><a href='http://finance.yahoo.com/q?s=".$symbol['symbol']."'>".$symbol['symbol']."</a></td>";
     echo "<td>".$symbol['description']."</td>";
     echo "<td><div style='float:right;'>".number_format($symbol['qty'],2)."</div></td>";
     echo "<td><div style='float:right;'>$".number_format($symbol['perShareCost'],2)."</div></td>";
     echo "<td><div style='float:right;'>$".number_format($symbol['price'],3)."</div></td>";
-    echo "<td><font color=$dailyFontColor><div style='float:right;'>$".number_format($symbol['dailyChange'],2)."</div></font></td>";
-    echo "<td><font color=$dailyFontColor><div style='float:right;'>$".number_format($symbol['totalDailyChange'],2)." (".number_format($symbol['dailyChangePct'],2)."%)</font></div></td>";
-    echo "<td><font color=$totalFontColor><div style='float:right;'>$".number_format($symbol['totalGL'],2)." (".number_format($symbol['totalGLPct'],2)."%)</font></div></td>";
+    echo "<td><font color='".$dailyFontColor."'><div style='float:right;'>$".number_format($symbol['dailyChange'],2)."</div></font></td>";
+    echo "<td><font color='".$dailyFontColor."'><div style='float:right;'>$".number_format($symbol['totalDailyChange'],2)." (".number_format($symbol['dailyChangePct'],2)."%)</div></font></td>";
+    echo "<td><font color='".$totalFontColor."'><div style='float:right;'>$".number_format($symbol['totalGL'],2)." (".number_format($symbol['totalGLPct'],2)."%)</div></font></td>";
     echo "<td><div style='float:right;'>$".number_format($symbol['mktValue'],2)."</div></td>";
     echo "</tr>";
 }
 echo "<tr>";
 echo "<th align='left'>Total</th>";
-echo "<th colspan=5><div style='float:right;'></div></th>";
+echo "<th colspan='5'><div style='float:right;'></div></th>";
 echo "<th><div style='float:right;'>$".number_format($totalDailyChange,2)." (".number_format($totalDailyChangePct,2)."%)</div></th>";
 echo "<th><div style='float:right;'>$".number_format($totalAcctGL,2)." (".number_format($totalGLPct,2)."%)</div></th>";
 echo "<th><div style='float:right;'>$".number_format($totalAcctMktValue,2)."</div></th>";
@@ -94,4 +101,13 @@ echo "</table>";
 // var_dump($info);
 echo "</body></html>";
 fclose($file);
+function debug_to_console( $data ) {
+
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+    echo $output;
+}
 ?>
