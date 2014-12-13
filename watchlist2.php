@@ -4,12 +4,12 @@
         <script language="JavaScript"></script>
         <script type="text/javascript" src="./jquery-1.11.1.min.js"></script>
         <!-- // <script type="text/javascript" src="updatePriceArray.js"></script> -->
-        <script type="text/javascript" src="./watchList2.js"></script>
+        <script type="text/javascript" src="./watchlist2.js"></script>
         <link rel="stylesheet" type="text/css" href="./fiddle.css" />
     </head>
 <body>
 <?php
-$file = fopen("/Users/wrknstff2000/Downloads/positions06272014.csv.xls", "r") or exit("Unable to open file!");
+$file = fopen("./positions06272014.csv.xls", "r") or exit("Unable to open file!");
 $info = array();
 $totalDailyChange = 0;
 $totalDailyChangePct = 0;

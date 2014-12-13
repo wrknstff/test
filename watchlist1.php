@@ -5,7 +5,7 @@
     </head>
 <body>
 <?php
-$file = fopen("/Users/wrknstff2000/Downloads/positions06272014.csv.xls", "r") or exit("Unable to open file!");
+$file = fopen("./positions06272014.csv.xls", "r") or exit("Unable to open file!");
 $info = array();
 $totalDailyChange = 0;
 $totalDailyChangePct = 0;
