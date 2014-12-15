@@ -1,7 +1,8 @@
-In order to run these programs, you must download jquery-1.11.1.min.js or you 
-can change to http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js 
-where appropriate.  All files need to be in the same directory to run 
-without modifications.
+In order to run these programs, you must download 
+jquery-1.11.1.min.js or you can change to 
+http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js 
+where appropriate.  All files need to be in the same directory to 
+run without modifications.
 
 dependencies:
 	watchlist1.php: 	
@@ -33,12 +34,14 @@ watchlist1.php
 	Uses PHP only and must be refreshed for current prices and totals.
 
 watchlist2.php
-	Uses PHP to generate the initial HTML page with current values from Yahoo Finance.  
-	Uses watchlist2.js to update price and totals without a page refresh.  Uses JSON 
-	call to Yahoo Finance for price updates.
+	Uses PHP to generate the initial HTML page with current values 
+	from Yahoo Finance.  Uses watchlist2.js to update price and 
+	totals without a page refresh.  Uses JSON call to Yahoo Finance 
+	for price updates.
 
 watchlist3.html
-	Uses the JQuery Ajax method to read the data file, and a jQuery JSON call to fetch the data 
-	objects from Google Finance.  Table values are updated with current prices and totals 
-	without a refresh.  All HTML is created and modified by directly accessing the Document 
-	Object Model (DOM) using JavaScript and JQuery.
+	Uses the JQuery Ajax method to read the data file, and a jQuery 
+	JSON call to fetch the data objects from Google Finance.  Table 
+	values are updated with current prices and totals without a 
+	refresh.  All HTML is created and modified by directly accessing 
+	the Document Object Model (DOM) using JavaScript and JQuery.
