@@ -109,66 +109,66 @@ $(function() {
     var text = document.createTextNode("Symbol");
     var cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Description");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Description");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Quantity");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Quantity");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Avg. Cost");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Avg. Cost");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Price");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Price");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Change");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Change");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Daily G/L");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Daily G/L");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Total G/L");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Total G/L");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
-    var text = document.createTextNode("Market Value");
-    var cell = document.createElement("th");
+    text = document.createTextNode("Market Value");
+    cell = document.createElement("th");
     document.getElementById("header").appendChild(cell).appendChild(text);
 
     for(var i=0; i< stockObject.length; i++) { 
-      var row = document.createElement("tr");
+      row = document.createElement("tr");
       row.setAttribute("id",stockObject[i].symbol);
       document.getElementById("myTBody").appendChild(row);
 
-      var text = document.createTextNode(stockObject[i].symbol);
-      var cell = document.createElement("td");
+      text = document.createTextNode(stockObject[i].symbol);
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "symbol");
       var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
 
-      var text = document.createTextNode(stockObject[i].description);
-      var cell = document.createElement("td");
+      text = document.createTextNode(stockObject[i].description);
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "description");
-      var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
+      result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
 
-      var text = document.createTextNode(stockObject[i].qty);
-      var cell = document.createElement("td");
+      text = document.createTextNode(stockObject[i].qty);
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "qty");
       cell.setAttribute("align","center");
-      var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
+      result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].cost));
-      var cell = document.createElement("td");
+      text = document.createTextNode(formatCurrency(stockObject[i].cost));
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "cost");
       cell.setAttribute("class","currency");  // ONE way to do it--see below
-      var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
+      result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].price.toFixed(2)));
-      var cell = document.createElement("td");
+      text = document.createTextNode(formatCurrency(stockObject[i].price.toFixed(2)));
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "price");
-      var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
+      result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
       $("#" + stockObject[i].symbol + "price").addClass("currency");  // ANOTHER way to do it--see above
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].change.toFixed(2)));
-      var cell = document.createElement("td");
+      text = document.createTextNode(formatCurrency(stockObject[i].change.toFixed(2)));
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "change");
       document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
       if(stockObject[i].change > 0) {
@@ -178,9 +178,9 @@ $(function() {
       }
       $("#" + stockObject[i].symbol + "change").addClass("currency");  
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].dailyGL.toFixed(2)) 
+      text = document.createTextNode(formatCurrency(stockObject[i].dailyGL.toFixed(2)) 
         + " (" + stockObject[i].dailyGLPct.toFixed(2) + "%)");
-      var cell = document.createElement("td");
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "dailyGL");
       var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text);
       if(stockObject[i].change > 0) {
@@ -190,10 +190,10 @@ $(function() {
       }
       $("#" + stockObject[i].symbol + "dailyGL").addClass("currency");  
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].totalGL.toFixed(2)) + " (" + stockObject[i].totalGLPct.toFixed(2) + "%)");
-      var cell = document.createElement("td");
+      text = document.createTextNode(formatCurrency(stockObject[i].totalGL.toFixed(2)) + " (" + stockObject[i].totalGLPct.toFixed(2) + "%)");
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "totalGL");
-      var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text); 
+      result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text); 
       if(stockObject[i].totalGL > 0) {
         $("#" + stockObject[i].symbol + "totalGL").css("color","green");
       } else if(stockObject[i].totalGL < 0) {
@@ -201,36 +201,36 @@ $(function() {
       }
       $("#" + stockObject[i].symbol + "totalGL").addClass("currency");  
 
-      var text = document.createTextNode(formatCurrency(stockObject[i].mktValue.toFixed(2)));
-      var cell = document.createElement("td");
+      text = document.createTextNode(formatCurrency(stockObject[i].mktValue.toFixed(2)));
+      cell = document.createElement("td");
       cell.setAttribute("id", stockObject[i].symbol + "mktValue");
-      var result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text); 
+      result = document.getElementById(stockObject[i].symbol).appendChild(cell).appendChild(text); 
       $("#" + stockObject[i].symbol + "mktValue").addClass("currency"); 
     }
-    var text = document.createTextNode("Total");
-    var row = document.createElement("tr");
+    text = document.createTextNode("Total");
+    row = document.createElement("tr");
     row.setAttribute("id","totalsRow");
     document.getElementById("myTBody").appendChild(row);
-    var cell = document.createElement("th");
+    cell = document.createElement("th");
     cell.setAttribute("colspan",6);
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
 
-    var text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2))
+    text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2))
       + " (" + ((totalAcctDailyGL / (totalAcctMktValue - totalAcctDailyGL)) * 100).toFixed(2) + "%)");
-    var cell = document.createElement("th");
+    cell = document.createElement("th");
     cell.setAttribute("id","totalAcctDailyGL");
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
     $("#totalAcctDailyGL").addClass("currency");  
 
-    var text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2))
+    text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2))
       + " (" + ((totalAcctGL / (totalAcctMktValue - totalAcctGL)) * 100).toFixed(2) + "%)");
-    var cell = document.createElement("th");
+    cell = document.createElement("th");
     cell.setAttribute("id","totalAcctGL");
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
     $("#totalAcctGL").addClass("currency");
 
-    var text = document.createTextNode(formatCurrency(totalAcctMktValue.toFixed(2)));
-    var cell = document.createElement("th");
+    text = document.createTextNode(formatCurrency(totalAcctMktValue.toFixed(2)));
+    cell = document.createElement("th");
     cell.setAttribute("id","totalAcctMktValue");
     document.getElementById("totalsRow").appendChild(cell).appendChild(text);
     $("#totalAcctMktValue").addClass("currency");
@@ -293,8 +293,8 @@ $(function() {
 			check.removeChild(check.childNodes[0]);
 			check.appendChild(text);
 
-      var text = document.createTextNode(formatCurrency(stockObject[randomStock].change.toFixed(2)));
-      var check = document.getElementById(stockObject[randomStock].symbol + "change");
+      text = document.createTextNode(formatCurrency(stockObject[randomStock].change.toFixed(2)));
+      check = document.getElementById(stockObject[randomStock].symbol + "change");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
       if(stockObject[randomStock].change > 0) {
@@ -303,9 +303,9 @@ $(function() {
         $("#" + stockObject[randomStock].symbol + "change").css("color","red");
       }
 
-      var text = document.createTextNode(formatCurrency(stockObject[randomStock].dailyGL.toFixed(2)) 
+      text = document.createTextNode(formatCurrency(stockObject[randomStock].dailyGL.toFixed(2)) 
         + " (" + stockObject[randomStock].dailyGLPct.toFixed(2) + "%)");
-      var check = document.getElementById(stockObject[randomStock].symbol + "dailyGL");
+      check = document.getElementById(stockObject[randomStock].symbol + "dailyGL");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
       if(stockObject[randomStock].change > 0) {
@@ -314,9 +314,9 @@ $(function() {
         $("#" + stockObject[randomStock].symbol + "dailyGL").css("color","red");
       }      
 
-      var text = document.createTextNode(formatCurrency(stockObject[randomStock].totalGL.toFixed(2))
+      text = document.createTextNode(formatCurrency(stockObject[randomStock].totalGL.toFixed(2))
         + " (" + stockObject[randomStock].totalGLPct.toFixed(2) + "%)");
-      var check = document.getElementById(stockObject[randomStock].symbol + "totalGL");
+      check = document.getElementById(stockObject[randomStock].symbol + "totalGL");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
       if(stockObject[randomStock].totalGL > 0) {
@@ -325,25 +325,25 @@ $(function() {
         $("#" + stockObject[randomStock].symbol + "totalGL").css("color","red");
       }            
 
-      var text = document.createTextNode(formatCurrency(stockObject[randomStock].mktValue.toFixed(2)));
-      var check = document.getElementById(stockObject[randomStock].symbol + "mktValue");
+      text = document.createTextNode(formatCurrency(stockObject[randomStock].mktValue.toFixed(2)));
+      check = document.getElementById(stockObject[randomStock].symbol + "mktValue");
       check.removeChild(check.childNodes[0]);
       check.appendChild(text);
     
-			var text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2))
+			text = document.createTextNode(formatCurrency(totalAcctDailyGL.toFixed(2))
         + " (" + ((totalAcctDailyGL / (totalAcctMktValue - totalAcctDailyGL)) * 100).toFixed(2) + "%)");
-			var check = document.getElementById("totalAcctDailyGL");
+			check = document.getElementById("totalAcctDailyGL");
 			check.removeChild(check.childNodes[0]);
 			check.appendChild(text);
 
-			var text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2))
+			text = document.createTextNode(formatCurrency(totalAcctGL.toFixed(2))
         + " (" + ((totalAcctGL / (totalAcctMktValue - totalAcctGL)) * 100).toFixed(2) + "%)");
-			var check = document.getElementById("totalAcctGL");
+			check = document.getElementById("totalAcctGL");
 			check.removeChild(check.childNodes[0]);
 			check.appendChild(text);
 
-			var text = document.createTextNode(formatCurrency(totalAcctMktValue.toFixed(2)));
-			var check = document.getElementById("totalAcctMktValue");
+			text = document.createTextNode(formatCurrency(totalAcctMktValue.toFixed(2)));
+			check = document.getElementById("totalAcctMktValue");
 			check.removeChild(check.childNodes[0]);
 			check.appendChild(text);
 
